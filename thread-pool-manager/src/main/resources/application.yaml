@@ -1,0 +1,4 @@
+server:
+  port: 9093
+  tomcat:
+    max-threads: 1
