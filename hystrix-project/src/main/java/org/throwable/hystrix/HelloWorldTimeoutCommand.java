@@ -17,7 +17,7 @@ public class HelloWorldTimeoutCommand extends HystrixCommand<String> {
 
     public HelloWorldTimeoutCommand(String name) {
         //最小配置,指定groupKey
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("helloWorldTimeoutGroup"))
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("helloWorldGroup"))
                 //指定超时时间为500ms
         .andCommandPropertiesDefaults(HystrixCommandProperties.Setter().withExecutionTimeoutInMilliseconds(500))
                 //commonKey
@@ -27,7 +27,8 @@ public class HelloWorldTimeoutCommand extends HystrixCommand<String> {
 
     @Override
     protected String run() throws Exception {
-        Thread.sleep(1000);
+		System.out.println("HelloWorldTimeoutCommand --> "+ Thread.currentThread().getName());
+		Thread.sleep(1000);
         return "Hello " + name + ",current thread:" + Thread.currentThread().getName();
     }
 
